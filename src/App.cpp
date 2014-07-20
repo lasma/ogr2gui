@@ -82,8 +82,8 @@ void App::InitData( void )
 void App::InitDims( void )
 {
     /* Option force coordinate dimensions in output dataset: 2D or 3D */
-    cmbTargetDims->addItem( tr( "2" ), QVariant(2) );
     cmbTargetDims->addItem( tr( "3" ), QVariant(3) );
+    cmbTargetDims->addItem( tr( "2" ), QVariant(2) );
 
 }
 
@@ -539,6 +539,11 @@ void App::UpdateParameters( void )
 	{
 		parameters += tr( "-sql \"" ) + txtSourceQuery->text() + tr( "\" " );
 	}
+
+    if( ! cmbTargetDims->currentText().isEmpty() )
+    {
+        parameters += tr( "-dim " ) + cmbTargetDims->currentText();
+    }
 
 	for( int i = 0; i < ( int ) parameters.size(); i ++ )
 	{

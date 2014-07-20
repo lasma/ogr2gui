@@ -39,6 +39,8 @@ App::App( QWidget *widget ) : QMainWindow( widget )
 
 	InitProjections();
 
+    InitDims();
+
 	UpdateParameters();
 }
 
@@ -75,6 +77,14 @@ void App::InitData( void )
 	}
 
 	#include "../inc/Dta.h"	
+}
+
+void App::InitDims( void )
+{
+    /* Option force coordinate dimensions in output dataset: 2D or 3D */
+    cmbTargetDims->addItem( tr( "2" ), QVariant(2) );
+    cmbTargetDims->addItem( tr( "3" ), QVariant(3) );
+
 }
 
 void App::InitProjections( void )
@@ -336,6 +346,18 @@ void App::InitLayout( void )
 				}
 
 				lytTarget->addLayout( lytTargetOptions, 4, 1 );
+
+                lytTargetDims = new QHBoxLayout();
+                {
+                    lblTargetDims = new QLabel("Dimensions");
+                    cmbTargetDims = new QComboBox();
+                    cmbTargetDims->setSizePolicy( QSizePolicy::Expanding, QSizePolicy::Fixed );
+
+                    lytTargetDims->addWidget(cmbTargetDims);
+                }
+
+                lytTarget->addWidget( lblTargetDims, 5, 0 );
+                lytTarget->addLayout( lytTargetDims, 5, 1 );
 			}
 
 			grpTarget->setLayout( lytTarget );

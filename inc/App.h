@@ -175,6 +175,10 @@ class App : public QMainWindow
 									QRadioButton *radTargetOverwrite;
 									QRadioButton *radTargetUpdate;
 
+                            QLabel *lblTargetDims;
+                            QHBoxLayout *lytTargetDims;
+                                QComboBox *cmbTargetDims;
+
 					QTextEdit *txtOutput;
 
 					QHBoxLayout *lytExecute;
@@ -187,6 +191,12 @@ class App : public QMainWindow
 		 *	\brief Inits data
 		 */
 		void InitData( void );
+
+        /*!
+         *	\fn void InitDims( void );
+         *	\brief Inits available coorinate dimensions
+         */
+        void InitDims( void );
 
 		/*!
 		 *	\fn void void InitProjections( void );
